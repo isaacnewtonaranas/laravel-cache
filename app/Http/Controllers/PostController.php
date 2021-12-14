@@ -23,7 +23,7 @@ class PostController extends Controller
             return Post::get();
         });
 
-        return view('index', $posts);
+        return view('blog.index', ['posts'=>$posts]);
     }
 
     /**
