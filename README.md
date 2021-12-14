@@ -219,7 +219,7 @@ php artisan tinker
 
 In here, we got to make sure that we call our model, chain the count method of and pass in an integer of the amount of rows we’d like to create, and chain the create method to finish it off.
 ```
-App\Models\Post:factory()->count(1000)->create();
+App\Models\Post::factory()->count(1000)->create();
 ```
 
 The output should be 1000 new rows inside your database. We got to make srue that we have an event and listener setup because it will fetch data from Laravels cache.

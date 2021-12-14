@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
+use App\Http\Controllers\CacheRetail;
 
 class PostController extends Controller
 {
@@ -23,7 +24,7 @@ class PostController extends Controller
             return Post::get();
         });
 
-        return view('index', $posts);
+        return view('blog.index', ['posts'=>$posts]);
     }
 
     /**
@@ -53,9 +54,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        return CacheRetail::get('post',$id,function($id){
+            $post = Post::find($id);
+            return $post;
+        });
     }
 
     /**
